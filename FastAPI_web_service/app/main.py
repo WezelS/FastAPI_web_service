@@ -1,4 +1,5 @@
 from os import environ
+from app.routes import users
 
 import databases
 
@@ -47,3 +48,5 @@ async def read_root():
         .order_by(desc(posts_table.c.created_at))
     )
     return await database.fetch_all(query)
+
+app.include_router(users.router)
