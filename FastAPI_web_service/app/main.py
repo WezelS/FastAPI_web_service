@@ -1,5 +1,5 @@
 from os import environ
-from app.routes import users
+from app.routes import users, posts
 
 import databases
 
@@ -50,3 +50,4 @@ async def read_root():
     return await database.fetch_all(query)
 
 app.include_router(users.router)
+app.include_router(posts.router)
