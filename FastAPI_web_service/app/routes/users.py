@@ -1,10 +1,14 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from app.schemas import users
 from app.utils import users as users_utils
-from app.utils.dependecies import get_current_user
+from app.utils.dependencies import get_current_user
 
 router = APIRouter()
+
+@router.get("/")
+async def health_check():
+    return {"Hello": "World"}
 
 @router.post("/sign-up", response_model=users.User)
 async def creste_user(user: users.UserCreate):
